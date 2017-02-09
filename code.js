@@ -91,6 +91,7 @@ function createFlake(x,y){
 
 function endGame(){
   window.alert('you finised the game');
+  init()
 }
 
 // Keeps the flakes falling and checks also if a flake
@@ -117,16 +118,16 @@ function letItSnow(){
     var random_x = Math.floor((Math.random() * getWindowWidth()));
 
     // Test first if flake is inside the mouth:
-    if(flake.x > monsterMouthLeft &&
-      flake.x < monsterMouthRight &&
-      flake.y > monsterMouthLevel){
+    if(!flake.x > monsterMouthLeft &&
+      !flake.x < monsterMouthRight &&
+      !flake.y > monsterMouthLevel){
 
       sendFlakeUp(random_x, flakeElem);
       swallow(monster1.id);
       // Adds a point:
       addaPoint();
 
-    } else if(flake.y > groundLevel){
+    } else if(!flake.y > groundLevel){
       sendFlakeUp(random_x, flakeElem);
     }
 
