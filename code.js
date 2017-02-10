@@ -4,6 +4,10 @@ var flake = "";	// A Flake object.
 var timer;	// Timer for running the flakes.
 var monsterSpeed = 20;	// Variable giving the speed to move the monster.
 var snowFallSpeed = 15; // Variable giving the speed to flakes to fall.
+var pointsbegin = 10;
+var endImage = [
+  "Capture.png"
+];
 
 var swallowImageSources = 
   [
@@ -87,6 +91,10 @@ function createFlake(x,y){
   document.body.appendChild(flakeElem); 
 	
 }
+function endGame(){
+  window.alert('you finised the game');
+  window.location.reload();
+}
 // Keeps the flakes falling and checks also if a flake
 // has been caught.
 function letItSnow(){
@@ -163,7 +171,7 @@ function find(id){
 // Adds one to the points:
 var addaPoint = function (){
   var currentAmount = parseInt(find("amount").innerHTML);
-  var newAmount = currentAmount+1;
+  var newAmount = currentAmount-1;
   find("amount").innerHTML = newAmount; 
 };
 
