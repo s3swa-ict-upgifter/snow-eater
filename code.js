@@ -119,9 +119,9 @@ function letItSnow(){
     var random_x = Math.floor((Math.random() * getWindowWidth()));  
 		
     // Test first if flake is inside the mouth:
-    if(flake.x > monsterMouthLeft &&
-      flake.x < monsterMouthRight &&
-      flake.y > monsterMouthLevel){
+    if(!flake.x > monsterMouthLeft &&
+      !flake.x < monsterMouthRight &&
+      !flake.y > monsterMouthLevel){
 			
       sendFlakeUp(random_x, flakeElem);
 			
@@ -171,8 +171,12 @@ function find(id){
 // Adds one to the points:
 var addaPoint = function (){
   var currentAmount = parseInt(find("amount").innerHTML);
-  var newAmount = currentAmount-1;
-  find("amount").innerHTML = newAmount; 
+  if currentAmount === 0 { 
+    return endGame()
+  } else {
+    var newAmount = currentAmount-1;
+    find("amount").innerHTML = newAmount;
+  }
 };
 
 // Sends the flake back up to the point (x,0):
