@@ -5,6 +5,13 @@ var timer;	// Timer for running the flakes.
 var monsterSpeed = 20;	// Variable giving the speed to move the monster.
 var snowFallSpeed = 15; // Variable giving the speed to flakes to fall.
 
+var swallowImageSources = 
+  [
+    "images/snowEater3.png",
+    "images/snowEater.png"
+  ];
+
+
 // SnowEater object prototype:
 function snowEaterProto(x,y){
 	
@@ -29,6 +36,22 @@ function snowFlake(x, y, id) {
   this.x = x;
   this.y = y;
   this.id = id;
+}
+
+// Shows a series of images that make the monster swallow:
+function swallow(monsterId){
+  var index = 0;
+  var src = "";
+  var timer2 = setInterval(showNextImage, 40);
+  function showNextImage(){
+    if(index < swallowImageSources.length){
+      src = swallowImageSources[index];
+      find(monsterId).src = src;
+      index++;
+    } else{
+      clearInterval(timer2);
+    }
+  }
 }
 
 // Creates a snowFlake and HTML-elements containing the flake image.
