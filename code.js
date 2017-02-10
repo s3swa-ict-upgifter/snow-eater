@@ -3,7 +3,7 @@ var monster1 = new snowEaterProto(0,0); // Creats a new snowEater monster.
 var flake = "";	// A Flake object.
 var timer;	// Timer for running the flakes.
 var monsterSpeed = 40;	// Variable giving the speed to move the monster.
-var snowFallSpeed = 10; // Variable giving the speed to flakes to fall.
+var snowFallSpeed = 15; // Variable giving the speed to flakes to fall.
 var pointsbegin = 10;
 var endImage = [
   "Capture.png"
