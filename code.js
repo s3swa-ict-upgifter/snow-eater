@@ -4,10 +4,6 @@ var flake = "";	// A Flake object.
 var timer;	// Timer for running the flakes.
 var monsterSpeed = 20;	// Variable giving the speed to move the monster.
 var snowFallSpeed = 15; // Variable giving the speed to flakes to fall.
-var pointsbegin = 10;
-var endImage = [
-  "Capture.png"
-];
 
 var swallowImageSources = 
   [
