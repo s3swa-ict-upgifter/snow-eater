@@ -1,6 +1,6 @@
 // Global variables:
 var monster1 = new snowEaterProto(0,0); // Creats a new snowEater monster.
-var flake = "";	// A Flake object.
+var flake = "images/snowflake.png";	// A Flake object.
 var timer;	// Timer for running the flakes.
 var monsterSpeed = 30;	// Variable giving the speed to move the monster.
 var snowFallSpeed = 15; // Variable giving the speed to flakes to fall.
