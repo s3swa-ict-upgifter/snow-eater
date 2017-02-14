@@ -1,6 +1,6 @@
 // Global variables:
 var monster1 = new snowEaterProto(0,0); // Creats a new snowEater monster.
-var flake = "images/snowflake.png";	// A Flake object.
+var flake = "";	// A Flake object.
 var timer;	// Timer for running the flakes.
 var monsterSpeed = 30;	// Variable giving the speed to move the monster.
 var snowFallSpeed = 15; // Variable giving the speed to flakes to fall.
@@ -67,7 +67,7 @@ function createFlake(x,y){
 
   // Creates and sets an src attribute to the flakeElem:
   var src = document.createAttribute("src");
-  src.value = "images/snowFlake.png";
+  src.value = "images/";
   flakeElem.setAttributeNode(src);
 
   // Creates and sets a class attribute value:
@@ -87,6 +87,7 @@ function createFlake(x,y){
   document.body.appendChild(flakeElem);
 
 }
+
 function endGame(){
   window.alert('you finised the game');
   window.location.reload();
@@ -122,7 +123,7 @@ function letItSnow(){
       sendFlakeUp(random_x, flakeElem);
 
       // Adds a point:
-			
+
     } else if(!flake.y > groundLevel){
       sendFlakeUp(random_x, flakeElem);
       addAPoint();
@@ -168,7 +169,7 @@ function find(id){
 var addAPoint = function (){
   var currentAmount = parseInt(find("amount").innerHTML);
   if currentAmount === 0 {
-    return endGame()
+    return endGame();
   } else {
     var newAmount = currentAmount-1;
     find("amount").innerHTML = newAmount;
