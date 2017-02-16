@@ -5,6 +5,12 @@ var timer;	// Timer for running the flakes.
 var monsterSpeed = 20;	// Variable giving the speed to move the monster.
 var snowFallSpeed = 15; // Variable giving the speed to flakes to fall.
 
+var swallowImageSources =
+  [
+    "images/snowEater3.png",
+    "images/snowEater.png"
+  ];
+
 // SnowEater object prototype:
 function snowEaterProto(x,y){
 	
