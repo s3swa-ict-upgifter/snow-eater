@@ -99,6 +99,7 @@ function letItSnow(){
     if(flake.x > monsterMouthLeft &&
       flake.x < monsterMouthRight &&
       flake.y > monsterMouthLevel){
+      swallow(monster1)
 			
       sendFlakeUp(random_x, flakeElem);
 			
