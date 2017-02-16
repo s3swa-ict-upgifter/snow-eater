@@ -30,6 +30,8 @@ function snowEaterProto(x,y){
   };
 }
 
+
+
 // SnowFlake object constructor:
 function snowFlake(x, y, id) {
   this.x = x;
@@ -149,6 +151,22 @@ var addaPoint = function (){
   var newAmount = currentAmount+1;
   find("amount").innerHTML = newAmount; 
 };
+
+// Shows a series of images that make the monster swallow:
+function swallow(monsterId){
+  var index = 0;
+  var src = "";
+  var timer2 = setInterval(showNextImage, 40);
+  function showNextImage(){
+    if(index < swallowImageSources.length){
+      src = swallowImageSources[index];
+      find(monsterId).src = src;
+      index++;
+    } else{
+      clearInterval(timer2);
+    }
+  }
+}
 
 // Sends the flake back up to the point (x,0):
 var sendFlakeUp = function (x, flakeElem){
