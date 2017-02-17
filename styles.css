@@ -11,14 +11,13 @@ body{
 }
 
 #snowEater {
-  position: absolute;
+position: absolute;
   bottom: 100px;
 }
 
 .snowFlake {
   position: absolute;
 }
-
 #points{
   position: absolute;
   top: 0;
