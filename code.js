@@ -88,7 +88,7 @@ function createFlake(x,y){
 }
 
 function endGame(){
-  window.alert('you finised the game');
+  window.alert('you lose');
 
 }
 
