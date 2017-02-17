@@ -65,10 +65,11 @@ function createFlake(x,y){
   var flakeElem = document.createElement("img");
 
   // Creates and sets an src attribute to the flakeElem:
-  var src = document.createAttribute("src");
-  src.value = "images/snowFlake.jpg";
-  flakeElem.setAttributeNode(src);
 
+  var src = document.createAttribute("src");       
+  src.value = "images/snowFlake.jpg";                         
+  flakeElem.setAttributeNode(src);   
+	
   // Creates and sets a class attribute value:
   var class_attr = document.createAttribute("class");
   class_attr.value = "snowFlake";
