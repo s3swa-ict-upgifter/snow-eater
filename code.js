@@ -170,6 +170,8 @@ function find(id){
 var addaPoint = function (){
   var currentAmount = parseInt(find("amount").innerHTML);
   if (currentAmount == 1) {
+    var newAmount = currentAmount-1;
+    find("amount").innerHTML = newAmount;
     endGame();
     return window.location.reload();
   } else {
