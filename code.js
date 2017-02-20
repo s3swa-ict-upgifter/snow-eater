@@ -169,7 +169,7 @@ function find(id){
 // Adds one to the points:
 var addaPoint = function (){
   var currentAmount = parseInt(find("amount").innerHTML);
-  if (currentAmount == 0) {
+  if (currentAmount == 1) {
     endGame();
     return window.location.reload();
   } else {
