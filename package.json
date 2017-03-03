@@ -3,7 +3,7 @@
   "version": "1.7.1",
   "description": "itslearning excersise for s3swa 2016/2017",
   "author": "Samuel Kenrick <KENRICSA@student.eursc.eu>",
-  "main": "lib/foo.js",
+  "main": "index.html",
   "repository": {
   "type": "git",
   "url": "https://github.com/s3swa-ict-upgifter/snow-eater"
@@ -11,6 +11,6 @@
   "bugs": {
   "url": "https://github.com/s3swa-ict-upgifter/snow-eater/issues"
 },
-  "private": true,
+  "private": false,
   "license": "MIT"
 }
