@@ -102,6 +102,11 @@ function letItSnow(){
   flake.y += fallingStep;
 
   var flakeElem = find(flake.id);
+  var i2, x2, y2, flakeElem2;
+  var fallingStep2 = snowFallSpeed;
+  flake2.y += fallingStep2;
+
+  var flakeElem2 = find(flake2.id);
 
   if(flakeElem){
     flakeElem.style.top = flake.y+"px";
@@ -133,11 +138,74 @@ function letItSnow(){
     // Recursive call:
     timer = setTimeout("letItSnow()",40);
   }
-}
+  if(flakeElem2){
+    flakeElem2.style.top = flake2.y+"px";
 
+    // When the flake hits the groundLevel, it will be sent back up.
+    var groundLevel2 = getWindowHeight()-100; // from the roof!
+
+    var monsterMouthLevel = groundLevel-70;
+    var monsterMouthLeft = monster1.x+10;	// Left part of mouth.
+    var monsterMouthRight = monster1.x+130;	// Right part of mouth.
+
+    // Random x value for the "new" flake:
+    var random_x2 = Math.floor((Math.random() * getWindowWidth()));
+
+    // Test first if flake is inside the mouth:
+    if(flake2.x > monsterMouthLeft &&
+      flake2.x < monsterMouthRight &&
+      flake2.y > monsterMouthLevel){
+
+      sendFlakeUp(random_x, flakeElem);
+      swallow(monster1.id);
+      // Adds a point:
+
+    } else if(flake2.y > groundLevel2){
+      sendFlakeUp(random_x2, flakeElem2);
+      addaPoint();
+    }
+
+    // Recursive call:
+    timer = setTimeout("letItSnow()",40);
+  }
+}
+function createFlake2(x,y){
+
+  var i2;
+
+  // Creates a new snowFlake object with location and id:
+  flake2 = new snowFlake(x,y, "snowFlake"+1);
+
+  // Creates an img element for the flake and appends it to body:
+  var flakeElem2 = document.createElement("img");
+
+  // Creates and sets an src attribute to the flakeElem:
+
+  var src2 = document.createAttribute("src");       
+  src2.value = "images/snowFlake.jpg";                         
+  flakeElem2.setAttributeNode(src2);   
+	
+  // Creates and sets a class attribute value:
+  var class_attr2 = document.createAttribute("class");
+  class_attr2.value = "snowFlake";
+  flakeElem2.setAttributeNode(class_attr2);
+
+  // Creates and sets a id attribute value:
+  var id_attr2 = document.createAttribute("id");
+  id_attr2.value = flake2.id;
+  flakeElem2.setAttributeNode(id_attr2);
+
+  // Sets the position:
+  flakeElem2.style.left = x+"px";
+  flakeElem2.style.top = y+"px";
+
+  document.body.appendChild(flakeElem2);
+
+}
 // Starts the snowing:
 function init(){
   createFlake(200,0);
+  createFlake2(200,0);
   letItSnow();
 }
 
