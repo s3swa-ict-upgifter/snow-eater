@@ -66,10 +66,10 @@ function createFlake(x,y){
 
   // Creates and sets an src attribute to the flakeElem:
 
-  var src = document.createAttribute("src");       
-  src.value = "images/snowFlake.jpg";                         
-  flakeElem.setAttributeNode(src);   
-	
+  var src = document.createAttribute("src");
+  src.value = "images/snowFlake.jpg";
+  flakeElem.setAttributeNode(src);
+
   // Creates and sets a class attribute value:
   var class_attr = document.createAttribute("class");
   class_attr.value = "snowFlake";
@@ -134,10 +134,43 @@ function letItSnow(){
     timer = setTimeout("letItSnow()",40);
   }
 }
+function createFlake2(x,y){
 
+  var i2;
+
+  // Creates a new snowFlake object with location and id:
+  flake2 = new snowFlake(x,y, "snowFlake"+1);
+
+  // Creates an img element for the flake and appends it to body:
+  var flakeElem2 = document.createElement("img");
+
+  // Creates and sets an src attribute to the flakeElem:
+
+  var src2 = document.createAttribute("src");
+  src2.value = "images/snowFlake.jpg";
+  flakeElem2.setAttributeNode(src2);
+
+  // Creates and sets a class attribute value:
+  var class_attr2 = document.createAttribute("class");
+  class_attr2.value = "snowFlake";
+  flakeElem2.setAttributeNode(class_attr2);
+
+  // Creates and sets a id attribute value:
+  var id_attr2 = document.createAttribute("id");
+  id_attr2.value = flake2.id;
+  flakeElem2.setAttributeNode(id_attr2);
+
+  // Sets the position:
+  flakeElem2.style.left = x+"px";
+  flakeElem2.style.top = y+"px";
+
+  document.body.appendChild(flakeElem2);
+
+}
 // Starts the snowing:
 function init(){
   createFlake(200,0);
+  createFlake2(230,0);
   letItSnow();
 }
 
@@ -145,6 +178,26 @@ function init(){
 // in that case the move methode:
 function checkKey(e) {
   var event = e.which || e.keyCode;
+  var KEY = {
+    BACKSPACE: 8,
+    TAB:       9,
+    RETURN:   13,
+    ESC:      27,
+    SPACE:    32,
+    PAGEUP:   33,
+    PAGEDOWN: 34,
+    END:      35,
+    HOME:     36,
+    LEFT:     37,
+    UP:       38,
+    RIGHT:    39,
+    DOWN:     40,
+    INSERT:   45,
+    DELETE:   46,
+    ZERO:     48, ONE: 49, TWO: 50, THREE: 51, FOUR: 52, FIVE: 53, SIX: 54, SEVEN: 55, EIGHT: 56, NINE: 57,
+    A:        65, B: 66, C: 67, D: 68, E: 69, F: 70, G: 71, H: 72, I: 73, J: 74, K: 75, L: 76, M: 77, N: 78, O: 79, P: 80, Q: 81, R: 82, S: 83, T: 84, U: 85, V: 86, W: 87, X: 88, Y: 89, Z: 90,
+    TILDA:    192
+  };
   switch (event) {
     case 37: //left;
       monster1.move(-monsterSpeed);
@@ -158,6 +211,8 @@ function checkKey(e) {
     break;
   }
 }
+
+
 
 // Looks for and returns the element defined by id.
 // If not found, returns false.
