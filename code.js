@@ -66,10 +66,10 @@ function createFlake(x,y){
 
   // Creates and sets an src attribute to the flakeElem:
 
-  var src = document.createAttribute("src");       
-  src.value = "images/snowFlake.jpg";                         
-  flakeElem.setAttributeNode(src);   
-	
+  var src = document.createAttribute("src");
+  src.value = "images/snowFlake.jpg";
+  flakeElem.setAttributeNode(src);
+
   // Creates and sets a class attribute value:
   var class_attr = document.createAttribute("class");
   class_attr.value = "snowFlake";
@@ -102,11 +102,6 @@ function letItSnow(){
   flake.y += fallingStep;
 
   var flakeElem = find(flake.id);
-  var i2, x2, y2, flakeElem2;
-  var fallingStep2 = snowFallSpeed;
-  flake2.y += fallingStep2;
-
-  var flakeElem2 = find(flake2.id);
 
   if(flakeElem){
     flakeElem.style.top = flake.y+"px";
@@ -138,36 +133,6 @@ function letItSnow(){
     // Recursive call:
     timer = setTimeout("letItSnow()",40);
   }
-  if(flakeElem2){
-    flakeElem2.style.top = flake2.y+"px";
-
-    // When the flake hits the groundLevel, it will be sent back up.
-    var groundLevel2 = getWindowHeight()-100; // from the roof!
-
-    var monsterMouthLevel = groundLevel-70;
-    var monsterMouthLeft = monster1.x+10;	// Left part of mouth.
-    var monsterMouthRight = monster1.x+130;	// Right part of mouth.
-
-    // Random x value for the "new" flake:
-    var random_x2 = Math.floor((Math.random() * getWindowWidth()));
-
-    // Test first if flake is inside the mouth:
-    if(flake2.x > monsterMouthLeft &&
-      flake2.x < monsterMouthRight &&
-      flake2.y > monsterMouthLevel){
-
-      sendFlakeUp(random_x, flakeElem);
-      swallow(monster1.id);
-      // Adds a point:
-
-    } else if(flake2.y > groundLevel2){
-      sendFlakeUp(random_x2, flakeElem2);
-      addaPoint();
-    }
-
-    // Recursive call:
-    timer = setTimeout("letItSnow()",40);
-  }
 }
 function createFlake2(x,y){
 
@@ -181,10 +146,10 @@ function createFlake2(x,y){
 
   // Creates and sets an src attribute to the flakeElem:
 
-  var src2 = document.createAttribute("src");       
-  src2.value = "images/snowFlake.jpg";                         
-  flakeElem2.setAttributeNode(src2);   
-	
+  var src2 = document.createAttribute("src");
+  src2.value = "images/snowFlake.jpg";
+  flakeElem2.setAttributeNode(src2);
+
   // Creates and sets a class attribute value:
   var class_attr2 = document.createAttribute("class");
   class_attr2.value = "snowFlake";
@@ -205,7 +170,7 @@ function createFlake2(x,y){
 // Starts the snowing:
 function init(){
   createFlake(200,0);
-  createFlake2(200,0);
+  createFlake2(230,0);
   letItSnow();
 }
 
@@ -213,6 +178,26 @@ function init(){
 // in that case the move methode:
 function checkKey(e) {
   var event = e.which || e.keyCode;
+  var KEY = {
+    BACKSPACE: 8,
+    TAB:       9,
+    RETURN:   13,
+    ESC:      27,
+    SPACE:    32,
+    PAGEUP:   33,
+    PAGEDOWN: 34,
+    END:      35,
+    HOME:     36,
+    LEFT:     37,
+    UP:       38,
+    RIGHT:    39,
+    DOWN:     40,
+    INSERT:   45,
+    DELETE:   46,
+    ZERO:     48, ONE: 49, TWO: 50, THREE: 51, FOUR: 52, FIVE: 53, SIX: 54, SEVEN: 55, EIGHT: 56, NINE: 57,
+    A:        65, B: 66, C: 67, D: 68, E: 69, F: 70, G: 71, H: 72, I: 73, J: 74, K: 75, L: 76, M: 77, N: 78, O: 79, P: 80, Q: 81, R: 82, S: 83, T: 84, U: 85, V: 86, W: 87, X: 88, Y: 89, Z: 90,
+    TILDA:    192
+  };
   switch (event) {
     case 37: //left;
       monster1.move(-monsterSpeed);
@@ -226,6 +211,8 @@ function checkKey(e) {
     break;
   }
 }
+
+
 
 // Looks for and returns the element defined by id.
 // If not found, returns false.
