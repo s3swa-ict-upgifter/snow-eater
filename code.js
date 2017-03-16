@@ -2,7 +2,7 @@
 var monster1 = new snowEaterProto(0,0); // Creats a new snowEater monster.
 var flake = "";	// A Flake object.
 var timer;	// Timer for running the flakes.
-var monsterSpeed = 20;	// Variable giving the speed to move the monster.
+var maxMonsterSpeed = 20;	// Variable giving the speed to move the monster.
 var snowFallSpeed = 15; // Variable giving the speed to flakes to fall.
 var pointsbegin = 10;
 
@@ -13,22 +13,39 @@ var swallowImageSources =
   ];
 
 // SnowEater object prototype:
-function snowEaterProto(x,y){
-
+function snowEaterProto(x,y){ 
   this.x = x;
   this.y = y;
   this.id = "snowEater";
   this.src= "images/snowEater.png";
-  this.move = function (step) {
-    if(step === undefined){
-      step = monsterSpeed;
-    }
-    this.x = this.x+step;
-    var snowEaterElem = find(this.id);
-    if(snowEaterElem){
-      snowEaterElem.style.left = this.x+"px";
-    }
-  };
+   var direction = 0;
+	var speed = 0;
+	var deltaTime = 0;
+	var accelartionTime = 1000.0;
+	this.setDirection = function (d) {
+		if (direction === d)
+			return;
+		direction = d;
+		deltaTime = 0;
+	};
+	function lerp(value1, value2, amount) {
+		amount = amount < 0 ? 0 : amount;
+		amount = amount > 1 ? 1 : amount;
+		return value1 + (value2 - value1) * amount;
+	}
+	function move() {
+		//lets just assume js will call our method every 16 ms
+		//setTimeout/setInterval is not that accurate tho
+		//so you should better calculate elapsed time
+		deltaTime += 16;
+		speed = lerp(speed, direction * maxMonsterSpeed, deltaTime / accelartionTime);
+				this.x += speed;
+		var snowEaterElem = find(this.id);
+		if (snowEaterElem) {
+			snowEaterElem.style.left = this.x + "px";
+		}
+	}
+	setInterval(move.bind(this), 16); //60 ups
 }
 
 // SnowFlake object constructor:
@@ -169,30 +186,45 @@ function createFlake2(x,y){
 }
 // Starts the snowing:
 function init(){
+    document.addEventListener("keydown", keydown);
+    document.addEventListener("keyup", keyup);
   createFlake(200,0);
   createFlake2(230,0);
   letItSnow();
 }
-
-// Checks if the button was an left or right arrow and calls
-// in that case the move methode:
-function checkKey(e) {
-  var event = e.which || e.keyCode;
-  switch (event) {
-    case 37: //left;
-      monster1.move(-monsterSpeed);
-    break;
-    case 38: //up;
-    break;
-    case 39: //right;
-      monster1.move(monsterSpeed);
-    break;
-    case 40: //down;
-    break;
-  }
+function keydown(e) {
+    var event = e.which || e.keyCode;
+    console.log("keydown " + event);
+    switch (event) {
+        case 37: //left;
+            monster1.setDirection(-1);
+            break;
+        case 38: //up;
+            break;
+        case 39: //right;
+            monster1.setDirection(1);
+            break;
+        case 40: //down;
+            break;
+    }
 }
+function keyup(e) {
+    var event = e.which || e.keyCode;
+    console.log("keyup " + event);
+    switch (event) {
+        case 37: //left;
+            monster1.setDirection(0);
+            break;
+        case 38: //up;
+            break;
+        case 39: //right;
+            monster1.setDirection(0);
+            break;
+        case 40: //down;
+            break;
+    }
 
-
+}
 
 // Looks for and returns the element defined by id.
 // If not found, returns false.
