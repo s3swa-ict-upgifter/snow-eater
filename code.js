@@ -29,6 +29,35 @@ function snowEaterProto(x,y){
       snowEaterElem.style.left = this.x+"px";
     }
   };
+  var direction = 0;
+    var speed = 0;
+    var deltaTime = 0;
+    var accelartionTime = 1000.0;
+    this.setDirection = function (d) {
+        if (direction === d)
+            return;
+        direction = d;
+        deltaTime = 0;
+    };
+    function lerp(value1, value2, amount) {
+        amount = amount < 0 ? 0 : amount;
+        amount = amount > 1 ? 1 : amount;
+        return value1 + (value2 - value1) * amount;
+    }
+    function move() {
+        //lets just assume js will call our method every 16 ms
+        //setTimeout/setInterval is not that accurate tho
+        //so you should better calculate elapsed time
+        deltaTime += 16;
+        speed = lerp(speed, direction * maxMonsterSpeed, deltaTime / accelartionTime);
+                this.x += speed;
+        var snowEaterElem = find(this.id);
+        if (snowEaterElem) {
+            snowEaterElem.style.left = this.x + "px";
+        }
+    }
+    setInterval(move.bind(this), 16); //60 ups
+
 }
 
 // SnowFlake object constructor:
@@ -134,82 +163,48 @@ function letItSnow(){
     timer = setTimeout("letItSnow()",40);
   }
 }
-function createFlake2(x,y){
 
-  var i2;
-
-  // Creates a new snowFlake object with location and id:
-  flake2 = new snowFlake(x,y, "snowFlake"+1);
-
-  // Creates an img element for the flake and appends it to body:
-  var flakeElem2 = document.createElement("img");
-
-  // Creates and sets an src attribute to the flakeElem:
-
-  var src2 = document.createAttribute("src");
-  src2.value = "images/snowFlake.jpg";
-  flakeElem2.setAttributeNode(src2);
-
-  // Creates and sets a class attribute value:
-  var class_attr2 = document.createAttribute("class");
-  class_attr2.value = "snowFlake";
-  flakeElem2.setAttributeNode(class_attr2);
-
-  // Creates and sets a id attribute value:
-  var id_attr2 = document.createAttribute("id");
-  id_attr2.value = flake2.id;
-  flakeElem2.setAttributeNode(id_attr2);
-
-  // Sets the position:
-  flakeElem2.style.left = x+"px";
-  flakeElem2.style.top = y+"px";
-
-  document.body.appendChild(flakeElem2);
-
-}
 // Starts the snowing:
 function init(){
   createFlake(200,0);
-  createFlake2(230,0);
   letItSnow();
+  document.addEventListener("keydown", keydown);
+  document.addEventListener("keyup", keyup);
 }
 
 // Checks if the button was an left or right arrow and calls
 // in that case the move methode:
-function checkKey(e) {
-  var event = e.which || e.keyCode;
-  var KEY = {
-    BACKSPACE: 8,
-    TAB:       9,
-    RETURN:   13,
-    ESC:      27,
-    SPACE:    32,
-    PAGEUP:   33,
-    PAGEDOWN: 34,
-    END:      35,
-    HOME:     36,
-    LEFT:     37,
-    UP:       38,
-    RIGHT:    39,
-    DOWN:     40,
-    INSERT:   45,
-    DELETE:   46,
-    ZERO:     48, ONE: 49, TWO: 50, THREE: 51, FOUR: 52, FIVE: 53, SIX: 54, SEVEN: 55, EIGHT: 56, NINE: 57,
-    A:        65, B: 66, C: 67, D: 68, E: 69, F: 70, G: 71, H: 72, I: 73, J: 74, K: 75, L: 76, M: 77, N: 78, O: 79, P: 80, Q: 81, R: 82, S: 83, T: 84, U: 85, V: 86, W: 87, X: 88, Y: 89, Z: 90,
-    TILDA:    192
-  };
-  switch (event) {
-    case 37: //left;
-      monster1.move(-monsterSpeed);
-    break;
-    case 38: //up;
-    break;
-    case 39: //right;
-      monster1.move(monsterSpeed);
-    break;
-    case 40: //down;
-    break;
-  }
+function keydown(e) {
+    var event = e.which || e.keyCode;
+    console.log("keydown " + event);
+    switch (event) {
+        case 37: //left;
+            monster1.setDirection(-1);
+            break;
+        case 38: //up;
+            break;
+        case 39: //right;
+            monster1.setDirection(1);
+            break;
+        case 40: //down;
+            break;
+    }
+}
+function keyup(e) {
+    var event = e.which || e.keyCode;
+    console.log("keyup " + event);
+    switch (event) {
+        case 37: //left;
+            monster1.setDirection(0);
+            break;
+        case 38: //up;
+            break;
+        case 39: //right;
+            monster1.setDirection(0);
+            break;
+        case 40: //down;
+            break;
+    }
 }
 
 
