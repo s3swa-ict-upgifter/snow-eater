@@ -151,45 +151,12 @@ function letItSnow(){
     timer = setTimeout("letItSnow()",40);
   }
 }
-function createFlake2(x,y){
 
-  var i2;
-
-  // Creates a new snowFlake object with location and id:
-  flake2 = new snowFlake(x,y, "snowFlake"+1);
-
-  // Creates an img element for the flake and appends it to body:
-  var flakeElem2 = document.createElement("img");
-
-  // Creates and sets an src attribute to the flakeElem:
-
-  var src2 = document.createAttribute("src");
-  src2.value = "images/snowFlake.jpg";
-  flakeElem2.setAttributeNode(src2);
-
-  // Creates and sets a class attribute value:
-  var class_attr2 = document.createAttribute("class");
-  class_attr2.value = "snowFlake";
-  flakeElem2.setAttributeNode(class_attr2);
-
-  // Creates and sets a id attribute value:
-  var id_attr2 = document.createAttribute("id");
-  id_attr2.value = flake2.id;
-  flakeElem2.setAttributeNode(id_attr2);
-
-  // Sets the position:
-  flakeElem2.style.left = x+"px";
-  flakeElem2.style.top = y+"px";
-
-  document.body.appendChild(flakeElem2);
-
-}
 // Starts the snowing:
 function init(){
     document.addEventListener("keydown", keydown);
     document.addEventListener("keyup", keyup);
   createFlake(200,0);
-  createFlake2(230,0);
   letItSnow();
 }
 function keydown(e) {
