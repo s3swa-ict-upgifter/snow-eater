@@ -192,7 +192,6 @@ function init(){
   createFlake2(230,0);
   letItSnow();
 }
-
 function keydown(e) {
     var event = e.which || e.keyCode;
     console.log("keydown " + event);
@@ -224,6 +223,7 @@ function keyup(e) {
         case 40: //down;
             break;
     }
+
 }
 
 // Looks for and returns the element defined by id.
