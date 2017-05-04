@@ -101,7 +101,7 @@ function createFlake(x,y){
   flakeElem.style.left = x+"px";
   flakeElem.style.top = y+"px";
 
-  document.body.appendChild(flakeElem);
+  $( "body" ).append(flakeElem);
 
 }
 
@@ -118,7 +118,7 @@ function letItSnow(){
   var fallingStep = snowFallSpeed;
   flake.y += fallingStep;
 
-  var flakeElem = find(flake.id);
+  var flakeElem = $(`#${flake.id}`);
 
   if(flakeElem){
     flakeElem.style.top = flake.y+"px";
@@ -196,21 +196,21 @@ function keyup(e) {
 // Looks for and returns the element defined by id.
 // If not found, returns false.
 function find(id){
-  var elem = document.getElementById(id);
+  var elem = $(`#${id}`);
   return elem;
 }
 
 // Adds one to the points:
 var addaPoint = function (){
-  var currentAmount = parseInt(find("amount").innerHTML);
+  var currentAmount = parseInt($("#amount")).html());
   if (currentAmount == 1) {
     var newAmount = currentAmount-1;
-    find("amount").innerHTML = newAmount;
+    $("#amount")).html(newAmount);
     endGame();
     return window.location.reload();
   } else {
     var newAmount = currentAmount-1;
-    find("amount").innerHTML = newAmount;
+    $("#amount")).html(newAmount);
   }
 };
 
