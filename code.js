@@ -107,7 +107,7 @@ function createFlake(x,y){
 
 function endGame(){
   window.alert('you lose');
-  $(".end").show();
+  $(".end").css('z-index', 999)
 
 }
 
@@ -155,7 +155,7 @@ function letItSnow(){
 
 // Starts the snowing:
 function init(){
-	$(".end").hide();
+	$(".end").css('z-index', -1);
     document.addEventListener("keydown", keydown);
     document.addEventListener("keyup", keyup);
   createFlake(200,0);
