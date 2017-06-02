@@ -214,8 +214,9 @@ var addaPoint = function (){
   if (currentAmount == 1) {
     var newAmount = currentAmount-1;
     find("amount").innerHTML = newAmount;
-    wait(700);
-    endGame();
+    setTimeout(function(){
+        endGame();
+    }, 5000);
     return window.location.reload();
   } else {
     var newAmount = currentAmount-1;
