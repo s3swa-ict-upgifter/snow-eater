@@ -101,7 +101,7 @@ function createFlake(x,y){
   flakeElem.style.left = x+"px";
   flakeElem.style.top = y+"px";
 
-  $( "body" ).append(flakeElem);
+  $("body").append(flakeElem);
 
 }
 
