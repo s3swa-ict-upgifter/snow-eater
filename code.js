@@ -106,7 +106,10 @@ function createFlake(x,y){
 }
 
 function endGame(){
-  window.alert('you lose');
+	setTimeout(function(){
+        window.alert('you lose');
+    }, 5000);
+  
 
 }
 
@@ -200,23 +203,13 @@ function find(id){
   return elem;
 }
 
-function wait(ms){
-   var start = new Date().getTime();
-   var end = start;
-   while(end < start + ms) {
-     end = new Date().getTime();
-  }
-}
-
 // Adds one to the points:
 var addaPoint = function (){
   var currentAmount = parseInt(find("amount").innerHTML);
   if (currentAmount == 1) {
     var newAmount = currentAmount-1;
     find("amount").innerHTML = newAmount;
-    setTimeout(function(){
         endGame();
-    }, 5000);
     return window.location.reload();
   } else {
     var newAmount = currentAmount-1;
