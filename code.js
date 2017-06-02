@@ -200,12 +200,21 @@ function find(id){
   return elem;
 }
 
+function wait(ms){
+   var start = new Date().getTime();
+   var end = start;
+   while(end < start + ms) {
+     end = new Date().getTime();
+  }
+}
+
 // Adds one to the points:
 var addaPoint = function (){
   var currentAmount = parseInt(find("amount").innerHTML);
   if (currentAmount == 1) {
     var newAmount = currentAmount-1;
     find("amount").innerHTML = newAmount;
+    wait(700);
     endGame();
     return window.location.reload();
   } else {
