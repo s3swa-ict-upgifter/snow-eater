@@ -84,7 +84,7 @@ function createFlake(x,y){
   // Creates and sets an src attribute to the flakeElem:
 
   var src = document.createAttribute("src");
-  src.value = "images/fidget.gif.gif";
+  src.value = "images/spinner.gif";
   flakeElem.setAttributeNode(src);
 
   // Creates and sets a class attribute value:
