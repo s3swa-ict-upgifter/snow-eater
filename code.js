@@ -210,7 +210,7 @@ var addaPoint = function (){
   if (currentAmount == 19) {
     var newAmount = currentAmount+1;
     find("amount").innerHTML = newAmount;
-        completedGame();
+        completeGame();
     return window.location.reload();
   } else {
     var newAmount = currentAmount+1;
