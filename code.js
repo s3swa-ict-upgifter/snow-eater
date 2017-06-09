@@ -106,11 +106,10 @@ function createFlake(x,y){
 }
 
 function endGame(){
-	setTimeout(function(){
         window.alert('you lose');
-    }, 5000);
-  
-
+}
+function completeGame(){
+        window.alert('you won');
 }
 
 // Keeps the flakes falling and checks also if a flake
@@ -144,10 +143,12 @@ function letItSnow(){
       sendFlakeUp(random_x, flakeElem);
       swallow(monster1.id);
       // Adds a point:
+	    addaPoint();
+      
 
     } else if(flake.y > groundLevel){
       sendFlakeUp(random_x, flakeElem);
-      addaPoint();
+      delaPoint();
     }
 
     // Recursive call:
@@ -206,14 +207,26 @@ function find(id){
 // Adds one to the points:
 var addaPoint = function (){
   var currentAmount = parseInt(find("amount").innerHTML);
+  if (currentAmount == 19) {
+    var newAmount = currentAmount+1;
+    find("amount").innerHTML = newAmount;
+        completedGame();
+    return window.location.reload();
+  } else {
+    var newAmount = currentAmount+1;
+    find("amount").innerHTML = newAmount;
+  }
+};
+var delaPoint = function (){
+  var currentAmount = parseInt(find("liveamount").innerHTML);
   if (currentAmount == 1) {
     var newAmount = currentAmount-1;
-    find("amount").innerHTML = newAmount;
+    find("liveamount").innerHTML = newAmount;
         endGame();
     return window.location.reload();
   } else {
     var newAmount = currentAmount-1;
-    find("amount").innerHTML = newAmount;
+    find("liveamount").innerHTML = newAmount;
   }
 };
 
