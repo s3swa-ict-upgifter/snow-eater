@@ -112,6 +112,13 @@ function endGame(){
   
 
 }
+function completeGame(){
+	setTimeout(function(){
+        window.alert('you won');
+    }, 5000);
+  
+
+}
 
 // Keeps the flakes falling and checks also if a flake
 // has been caught.
@@ -144,6 +151,7 @@ function letItSnow(){
       sendFlakeUp(random_x, flakeElem);
       swallow(monster1.id);
       // Adds a point:
+      delaPoint();
 
     } else if(flake.y > groundLevel){
       sendFlakeUp(random_x, flakeElem);
@@ -213,6 +221,18 @@ var addaPoint = function (){
     return window.location.reload();
   } else {
     var newAmount = currentAmount-1;
+    find("amount").innerHTML = newAmount;
+  }
+};
+var delaPoint = function (){
+  var currentAmount = parseInt(find("amount").innerHTML);
+  if (currentAmount == 19) {
+    var newAmount = currentAmount+1;
+    find("amount").innerHTML = newAmount;
+        completedGame();
+    return window.location.reload();
+  } else {
+    var newAmount = currentAmount+1;
     find("amount").innerHTML = newAmount;
   }
 };
