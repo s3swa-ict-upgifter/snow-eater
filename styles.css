@@ -15,6 +15,15 @@ body{
   padding-top: 10px;
 }
 
+.url {
+  text-decoration: none;
+  color: #14BAE4;
+}
+
+.black-text-pls {
+  color: cyan;
+}
+
 .text-effect {
   text-shadow: 3px 3px 15px black;
   transition: all 0.5s ease;
